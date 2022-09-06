@@ -5,6 +5,7 @@ Número de Cuenta: 318159926
 Alumno:
 No. de Cuenta:
 -}
+-- Cosa innecesaria. 
 
 -- Parte #1: ¿Por qué? porque sí.
 
