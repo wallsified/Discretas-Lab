@@ -65,12 +65,12 @@ pertenece a (cbz:col) = if a == cbz
 
 data Categoria = Perfecto | Deficiente | Abundante
 
-equival :: Categoria -> IO() --Equivalencia de data entonces imprime usa en la firma un Input/Output
-equival Perfecto   = print "Perfecto"
-equival Abundante  = print "Abundante"
-equival Deficiente = print "Deficiente"
+equival :: Categoria -> String --Equivalencia de data entonces imprime usa en la firma un Input/Output
+equival Perfecto   = "Perfecto"
+equival Abundante  = "Abundante"
+equival Deficiente = "Deficiente"
 
-nicomano :: Int -> IO()
+nicomano :: Int -> String
 nicomano 0 = error "0 es perfecto por def."
 nicomano n = if (n>0)
     then equiv n (salicuotafac n (n-1)) --Acepta solo positivos
@@ -82,7 +82,7 @@ salicuotafac n k = if (myMod n k == 0) --Aqui sucede la clasificación de si son
     then k + salicuotafac n (k-1) -- Si lo es se suma
     else salicuotafac n (k-1) -- Si no pasa a la siguiente
 
-equiv :: Int -> Int -> IO()
+equiv :: Int -> Int -> String
 equiv n k = if (n == k) --Aqui la clasificación del número
     then equival Perfecto
     else (if (n > k)
@@ -99,10 +99,15 @@ y el resto de la lista. Esto nos ayuda a entender más fácil el funcionamiento 
 
 luhn :: [Int] -> Bool
 luhn [] = False
---luhn (cbz:cab:col) = if ((luhndigval (cbz:col) == True) && (modTenLunh (sumaListLunh (multSecnLuhn (cbz:cab:col))) == True))
-  --then True
-  --else False
-luhn (x:y:xs) = if (modTenLunh (sumaListLunh (multSecnLuhn (x:y:xs)))) == True then True else False
+luhn (x:y:xs) = if ((luhndigval (x:y:xs) == True) && (modTenLunh (sumaListLunh (multSecnLuhn (x:y:xs)))) == True) then True else False
+
+-- Regla #0: Debemos considerar cada dígito como un número independiente.
+luhndigval :: [Int] -> Bool
+luhndigval [] = False --No hay elementos, no es válido
+luhndigval [n] = if (n <= 9 && 0 <= n) then True else False
+luhndigval (x:xs) = if (x <= 9 && x >= 0) -- el elemento en la cabeza, entero en la lista entre 0 y 9
+    then True && (luhndigval xs) -- Si todos son validos True && True ... && True == True
+    else error "Por favor ingrese elementos en la lista entre 0 y 9. Ej. [1,3,5,6,4]"  -- Si fuera [19,20] sin esta función sería válido, pero para que esto funcione bien tendría que ser [1,9,2,0].
 
 {-
  Regla #1: Multiplicar por dos un número sí y otro no comenzando de izquierda a derecha.
@@ -113,7 +118,7 @@ multSecnLuhn :: [Int] -> [Int]
 multSecnLuhn [] = []
 multSecnLuhn [n] = [2*n]
 -- Restamos -9 de una vez y asi la multiplicación no nos da elementos de dos cifras.
-multSecnLuhn (cbz:elem:col) = restNineLunh ([2*cbz] ++ [elem] ++ multSecnLuhn col)
+multSecnLuhn (cbz:ele:col) = restNineLunh ([2*cbz] ++ [ele] ++ multSecnLuhn col)
 
 -- Regla #2: Restar 9 a cada número mayor a 9 para dejar números de una sola cifra.
 restNineLunh :: [Int] -> [Int]
@@ -122,16 +127,6 @@ restNineLunh [n] = if (n > 10) then [n-9] else [n]
 restNineLunh (cbz:col) = if (cbz > 9)
     then ((cbz-9):restNineLunh col)
     else (cbz:(restNineLunh col))
-
-{-
--- Regla #
-luhndigval :: [Int] -> Bool
-luhndigval [] = False --No hay elementos, no es válido
-luhndigval [n] = if (n > 9 && n < 0) then False else True
-luhndigval (cbz:col) = if (cbz > 9 && cbz < 0) -- el elemento en la cabeza, entero en la lista entre 0 y 9
-    then False
-    else True && (luhndigval col) -- Si todos son validos True && True ... && True == True
--}
 
 -- Regla #3: Sumar todos los números.
 sumaListLunh :: [Int] -> Int
@@ -142,6 +137,7 @@ sumaListLunh (cbz:col) = cbz + sumaListLunh col
 modTenLunh :: Int -> Bool
 modTenLunh n = if (myMod n 10 == 0) then True else False
 
+---------------------------------------------------------------------
 {-
 divE :: Int -> Int -> Int
 divE n m = divEAux n m 0
@@ -176,7 +172,6 @@ listaCollatz n = if (myMod n 2 == 0) -- Es par?
    else [n] ++ listaCollatz ((3*n) +1)
     --then [n] ++ listaCollatz (divE n 2) --Si, divide entre 2
     --else [n] ++ listaCollatz ((3*n)+1) -- No, multiplica por 3 y suma 1
-
 
 
 -- Parte #3: Expresiones aritméticas.
