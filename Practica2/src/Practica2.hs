@@ -138,6 +138,9 @@ modTenLunh :: Int -> Bool
 modTenLunh n = if (myMod n 10 == 0) then True else False
 
 ---------------------------------------------------------------------
+{- Merged and checked @ 19/09/22 -}
+
+
 {-
 divE :: Int -> Int -> Int
 divE n m = divEAux n m 0
