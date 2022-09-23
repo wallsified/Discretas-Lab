@@ -28,7 +28,7 @@ potencia b p = if (b>1) --Evitar negativos
 suma_pares :: Int -> Int
 suma_pares 0 = 0 
 suma_pares n = if (n>0) --Suma de pares positivos
-    then (if (mod n 2 == 0)
+    then (if (myMod n 2 == 0)
         then n + (suma_pares (n-1)) --Resul. suma de pares positivos
         else suma_pares (n-1)) 
     else 0 --Evitar negativos
@@ -180,13 +180,55 @@ listaCollatz n = if (myMod n 2 == 0) -- Es par?
 -- Parte #3: Expresiones aritméticas.
 
 data EA = N Int | Positivo EA | Negativo EA | Suma EA EA |
-          Resta EA EA | Mult EA EA | Div EA EA | Mod EA EA | Pot EA EA
+          Resta EA EA | Mult EA EA | Div EA EA | Mod EA EA | 
+          Pot EA EA
 
-{-
+instance Show EA where
+    show (N a) = show a
+    show (Positivo (a)) = show a
+    show (Negativo (a)) = "(" ++ show a ++ ")" 
+    show (Suma (a) (b)) = show a ++ " + " ++ show b
+    show (Resta (a) (b)) = show a ++ " - " ++ show b
+    show (Mult (a) (b)) = show a ++ " * " ++ show b 
+    show (Div (a) (b)) = show a ++ " / " ++ show b
+    show (Mod (a) (b)) = show a ++ " % " ++ show b
+    show (Pot (a) (b)) = show a ++ " ^ " ++ show b
+
 creaSumaEA :: Int -> Int -> EA
+creaSumaEA a b = 
+    if (a<0 ) then Suma (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Suma (Positivo (N a)) (Negativo (N b))
+    else Suma (Positivo (N a)) (Positivo (N b))
+
 creaRestaEA :: Int -> Int -> EA
+creaRestaEA a b = 
+    if (a<0 ) then Resta (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Resta (Positivo (N a)) (Negativo (N b))
+    else Resta (Positivo (N a)) (Positivo (N b))
+
 creaMultEA :: Int -> Int -> EA
+creaMultEA a b = 
+    if (a<0 ) then Mult (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Mult (Positivo (N a)) (Negativo (N b))
+    else Mult (Positivo (N a)) (Positivo (N b))
+
 creaDivEA :: Int -> Int -> EA
-creaModEA :: Int -> Int -> EA
+creaDivEA a b = 
+    if (a<0 ) then Div (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Div (Positivo (N a)) (Negativo (N b))
+    else Div (Positivo (N a)) (Positivo (N b))
+
 creaPotEA :: Int -> Int -> EA
--}
+creaPotEA a b = 
+    if (a<0 ) then Pot (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Pot (Positivo (N a)) (Negativo (N b))
+    else Pot (Positivo (N a)) (Positivo (N b))
+
+creaModEA :: Int -> Int -> EA
+creaModEA a b = 
+    if (a<0 ) then Mod (Negativo (N a)) (Positivo (N b))
+    else if (b<0) then Mod (Positivo (N a)) (Negativo (N b))
+    else Mod (Positivo (N a)) (Positivo (N b))
+
+menorque :: EA -> EA -> Bool
+menorque a b = 
