@@ -18,19 +18,19 @@ myMod n m = if (n < m) then n else myMod (n-m) m
 -- Parte #1: ¿Por qué? porque sí.
 
 potencia :: Int -> Int -> Int
-potencia b 0 = 1 
-potencia 0 p = 0 
-potencia b 1 = b 
+potencia b 0 = 1
+potencia 0 p = 0
+potencia b 1 = b
 potencia b p = if (b>1) --Evitar negativos
     then b * (potencia b (p-1)) --Potencia de cualq. número a calquier exponente
     else error "Entrada inválida." -- Si ingresan un negativo
 
 suma_pares :: Int -> Int
-suma_pares 0 = 0 
+suma_pares 0 = 0
 suma_pares n = if (n>0) --Suma de pares positivos
     then (if (myMod n 2 == 0)
         then n + (suma_pares (n-1)) --Resul. suma de pares positivos
-        else suma_pares (n-1)) 
+        else suma_pares (n-1))
     else 0 --Evitar negativos
 
 triangular :: Int -> Int
@@ -53,7 +53,7 @@ reversa []        = []
 reversa [a]       = [a]
 reversa (cbz:col) = reversa col ++ [cbz]
 
--- Eq a por lo que entendi, hace que todas mis variables de tipo, puedan ser evaluadas con un == o un /=.
+-- Eq, a por lo que entendimos, hace que todas mis variables de tipo, puedan ser evaluadas con un == o un /=.
 pertenece :: Eq a => a -> [a] -> Bool
 pertenece a [] = False
 pertenece a (cbz:col) = if a == cbz
@@ -115,8 +115,8 @@ luhndigval (x:xs) = if (x <= 9 && x >= 0) -- el elemento en la cabeza, entero en
 -}
 
 multSecnLuhn :: [Int] -> [Int]
-multSecnLuhn [] = []
-multSecnLuhn [n] = [2*n]
+multSecnLuhn []            = []
+multSecnLuhn [n]           = [2*n]
 -- Restamos -9 de una vez y asi la multiplicación no nos da elementos de dos cifras.
 multSecnLuhn (cbz:ele:col) = restNineLunh ([2*cbz] ++ [ele] ++ multSecnLuhn col)
 
@@ -136,10 +136,6 @@ sumaListLunh (cbz:col) = cbz + sumaListLunh col
 -- Regla #4: Si el resultado es divisible por 10, es un número válido.
 modTenLunh :: Int -> Bool
 modTenLunh n = if (myMod n 10 == 0) then True else False
-
----------------------------------------------------------------------
-{- Merged and checked @ 19/09/22 -}
-
 
 {-
 divE :: Int -> Int -> Int
@@ -165,8 +161,6 @@ pasosCollatz n = if (n > 1)
     then (longit (listaCollatz n)) - 1 -- Longitud -1. Para no contar el paso 0 :).
     else error "Entrada inválida. Se necesita un número natural"
 
--- Si podemos ocupar 'div' ya fregó por que justo resolvemos Collatz con dos métodos
-
 listaCollatz :: Int -> [Int]
 listaCollatz 0 = [] --Sin elementos
 listaCollatz 1 = [1] -- Será 1
@@ -180,55 +174,64 @@ listaCollatz n = if (myMod n 2 == 0) -- Es par?
 -- Parte #3: Expresiones aritméticas.
 
 data EA = N Int | Positivo EA | Negativo EA | Suma EA EA |
-          Resta EA EA | Mult EA EA | Div EA EA | Mod EA EA | 
+          Resta EA EA | Mult EA EA | Div EA EA | Mod EA EA |
           Pot EA EA
 
 instance Show EA where
-    show (N a) = show a
-    show (Positivo (a)) = show a
-    show (Negativo (a)) = "(" ++ show a ++ ")" 
-    show (Suma (a) (b)) = show a ++ " + " ++ show b
+    show (N a)           = show a
+    show (Positivo (a))  = show a
+    show (Negativo (a))  = "(" ++ show a ++ ")"
+    show (Suma (a) (b))  = show a ++ " + " ++ show b
     show (Resta (a) (b)) = show a ++ " - " ++ show b
-    show (Mult (a) (b)) = show a ++ " * " ++ show b 
-    show (Div (a) (b)) = show a ++ " / " ++ show b
-    show (Mod (a) (b)) = show a ++ " % " ++ show b
-    show (Pot (a) (b)) = show a ++ " ^ " ++ show b
+    show (Mult (a) (b))  = show a ++ " * " ++ show b
+    show (Div (a) (b))   = show a ++ " / " ++ show b
+    show (Mod (a) (b))   = show a ++ " % " ++ show b
+    show (Pot (a) (b))   = show a ++ " ^ " ++ show b
 
 creaSumaEA :: Int -> Int -> EA
-creaSumaEA a b = 
+creaSumaEA a b =
     if (a<0 ) then Suma (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Suma (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Suma (Negativo (N a)) (Negativo (N a))
     else Suma (Positivo (N a)) (Positivo (N b))
 
 creaRestaEA :: Int -> Int -> EA
-creaRestaEA a b = 
+creaRestaEA a b =
     if (a<0 ) then Resta (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Resta (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Resta (Negativo (N a)) (Negativo (N a))
     else Resta (Positivo (N a)) (Positivo (N b))
 
 creaMultEA :: Int -> Int -> EA
-creaMultEA a b = 
+creaMultEA a b =
     if (a<0 ) then Mult (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Mult (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Mult (Negativo (N a)) (Negativo (N a))
     else Mult (Positivo (N a)) (Positivo (N b))
 
 creaDivEA :: Int -> Int -> EA
-creaDivEA a b = 
+creaDivEA a b =
     if (a<0 ) then Div (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Div (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Div (Negativo (N a)) (Negativo (N a))
     else Div (Positivo (N a)) (Positivo (N b))
 
 creaPotEA :: Int -> Int -> EA
-creaPotEA a b = 
+creaPotEA a b =
     if (a<0 ) then Pot (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Pot (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Pot (Negativo (N a)) (Negativo (N a))
     else Pot (Positivo (N a)) (Positivo (N b))
 
 creaModEA :: Int -> Int -> EA
-creaModEA a b = 
+creaModEA a b =
     if (a<0 ) then Mod (Negativo (N a)) (Positivo (N b))
     else if (b<0) then Mod (Positivo (N a)) (Negativo (N b))
+    else if (a<0 && b<0) then Mod (Negativo (N a)) (Negativo (N a))
     else Mod (Positivo (N a)) (Positivo (N b))
 
-menorque :: EA -> EA -> Bool
-menorque a b = 
+--menorQue :: EA -> EA -> Bool
+--menorQue a b =
+
+--mayorQue :: EA -> EA -> Bool
+--mayorQue a b =
