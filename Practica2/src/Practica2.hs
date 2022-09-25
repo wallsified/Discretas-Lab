@@ -230,8 +230,12 @@ creaModEA a b =
     else if (a<0 && b<0) then Mod (Negativo (N a)) (Negativo (N a))
     else Mod (Positivo (N a)) (Positivo (N b))
 
---menorQue :: EA -> EA -> Bool
---menorQue a b =
+menorque :: EA -> EA -> Bool
+menorque (N a) (N b) = a < b
+menorque (N a) (Positivo (N b)) = a < b
+menorque (N a) (Negativo (N b)) = a < b
 
---mayorQue :: EA -> EA -> Bool
---mayorQue a b =
+mayorque :: EA -> EA -> Bool
+mayorque (N a) (N b) = a > b
+mayorque (N a) (Positivo (N b)) = a > b
+mayorque (N a) (Negativo (N b)) = a > b
