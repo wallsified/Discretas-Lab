@@ -13,34 +13,32 @@
 
 <br>
 
-## Funciones Auxiliares
+### Funciones Auxiliares
 En la función _pertenece_ usamos en la firma _Eq a =>_ que hace todos los tipos de "a" sean válidos para buscar una equivalencia (==).
+
+<br>
 
 ### Nicómano
 
-_equival_: Es como el ejemplo de clase donde se hace la equivalencia de los planetas, solo que aqui devuelve un String y no un float.
+En la función nicomano lo que pensamos fue primero, validar el dato. Después en salicuotafac clasificamos los factores sumandolos, para que llegando a un entero, vuelva a nicomano en la misma linea, pero ahora con la función equiv. Que clasifica si la suma de factores propios es mayor, menor o igual que el número que se dió. Y va a la función equival que dependiendo el resultado en equival regresa un String. Y con ello nicomano regresa un String.
 
-_salicuotafac_: Obtiene los factores propios y los suma
+<br>
 
-_equiv_: Clasifica el valor de la suma de los factores con respecto al número que el usuario dió.
+### Luhn
 
-#### Luhn
+En la función luhn pide una lista de elementos de dígitos únicos. Donde una lista de por lo menos de 2 elementos, pasará a primero, ser validada por la función luhndigval que dirá si los enteros en cada elemento son de un solo dígito. En caso que si, pasa a hacer todo el proceso pedido, multSecnLuhn se encarga de multiplicar los dígitos impares, sumaListLuhn de sumar lo elementos de la lista; y modTenLuhn y si la suma es divisible entre 10. Entonces si ambas son verdaderas entonces regresa True.
 
-_luhndigval_: Verifica que todo elemento en la lista sea entre 0 y 9. Así se pueden hacer núemros de 1 solo dígito.
-
-_multSecnLuhn_: Multiplica el primer elemnto por 2 y el otro no. Si es uno solo, ya sea ej. [1,2,1,2,1,2,1], el último debe ser múltiplicado por 2.
-
-_restNineLuhn_: Resta 9 si es mayor a 9.
-
-_sumaListLuhn_: Suma los elementos en la lista
-
-_modTenLuhn_: Si es módulo de 10, regresa True, en caso contrario False.
+<br>
 
 ### Collatz
 
-_longit_: Regresa el número de elementos en una lista.
+La función listaCollatz hace una lista y realiza lo que debe según sea par o impar, hasta que sea 1. Y pasosCollatz da la longitud (con longit) y resta 1 por el paso 0, entonces devuelve la cantidad de elementos - 1 (paso 1 - paso n).
 
-_div_: Realiza una división. (Función del Prelude)
+<br>
+
+### Expresiones EA
+
+Esta sección fue la que más se nos complico, ya que aunque entendimos que debia hacer la función, el abstraerlo a nivel de que Haskell lo entendiera. Pudimos con todas menos con las últimas dos (_mayorQue_ y _menorQue_). Sin embargo, dejamos nuestras hipótesis en el archivo de como creeemos que funcionarían (curiosamente, Haskell si entendió, pero nosotros no) 
 
 <br>
 
