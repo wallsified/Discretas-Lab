@@ -25,7 +25,7 @@ snocP :: (a, a) -> EList a -> EList a
 snocP (a,b) [] = [(a, b)]
 snocP (a, b) ((x, y) : xs) = (x, y) : snocP (a, b) xs
 
-    -- Elabora una función que haga la reversa de una EList. -}
-    reversaP :: EList a -> EList a
-    reversaP [] = []
-    reversaP ((x, y) : xs) = snocP (y, x) (reversaP xs)
+-- Elabora una función que haga la reversa de una EList. -}
+reversaP :: EList a -> EList a
+reversaP [] = []
+reversaP ((x, y) : xs) = snocP (y, x) (reversaP xs)
