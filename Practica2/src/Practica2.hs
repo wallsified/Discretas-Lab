@@ -60,7 +60,6 @@ pertenece a (cbz:col) = if a == cbz
     then True
     else pertenece a col --Si no existe a, llegará hasta [] donde es False
 
-
 -- Parte #2: Pensar correcto es lo que hago...
 
 data Categoria = Perfecto | Deficiente | Abundante
@@ -137,16 +136,6 @@ sumaListLunh (cbz:col) = cbz + sumaListLunh col
 modTenLunh :: Int -> Bool
 modTenLunh n = if (myMod n 10 == 0) then True else False
 
-{-
-divE :: Int -> Int -> Int
-divE n m = divEAux n m 0
-
-divEAux :: Int -> Int -> Int -> Int
-divEAux n m acc = if n < m
-        then acc -- Devuelve el acumulador, pues es el que contea cuantas veces se hixo la operación.
-        else divEAux (n-m) m acc+1
--}
-
 -- Collatz-
 
 -- Función Auxiliar para pasosCollatz
@@ -167,9 +156,6 @@ listaCollatz 1 = [1] -- Será 1
 listaCollatz n = if (myMod n 2 == 0) -- Es par?
    then [n] ++ listaCollatz (div n 2)
    else [n] ++ listaCollatz ((3*n) +1)
-    --then [n] ++ listaCollatz (divE n 2) --Si, divide entre 2
-    --else [n] ++ listaCollatz ((3*n)+1) -- No, multiplica por 3 y suma 1
-
 
 -- Parte #3: Expresiones aritméticas.
 
@@ -230,6 +216,8 @@ creaModEA a b =
     else if (a<0 && b<0) then Mod (Negativo (N a)) (Negativo (N a))
     else Mod (Positivo (N a)) (Positivo (N b))
 
+
+-- No sabemos si estas está bien realmente. Lo intentamos!
 menorque :: EA -> EA -> Bool
 menorque (N a) (N b) = a < b
 menorque (N a) (Positivo (N b)) = a < b

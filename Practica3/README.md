@@ -1,10 +1,10 @@
 <h2 align='center'>
-  Práctica 2: ¿Haaaskell? Sí. 
+  Práctica 3: Listas de longitud par. 
 </h2>
 
 <br>
 
-### Alumno
+### Alumnos
 
 | Alumnos                     | No. de Cuenta |
 | --------------------------- | ------------- |
@@ -22,4 +22,4 @@
 
 <br>
 
-> _I've got a bad feeling about this...._
+> _You just keep on trying 'till you run out of cake..._
