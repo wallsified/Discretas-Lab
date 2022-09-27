@@ -22,7 +22,7 @@ appendP ((a, b) : xs) l = (a, b) : appendP xs l
 
 -- Función que agrega dos elementos al final de una EList.
 snocP :: (a, a) -> EList a -> EList a
-snocP (a,b) [] = [(a, b)]git 
+snocP (a,b) [] = [(a, b)]
 snocP (a, b) ((x, y) : xs) = (x, y) : snocP (a, b) xs
 
     -- Elabora una función que haga la reversa de una EList. -}
