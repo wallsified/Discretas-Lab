@@ -79,11 +79,10 @@ aplanaP ((a,b) : xs) = a : b : aplanaP xs
 
 {- Función que convierte una lista común en una EList, si la lista común es de longitud impar, no se
 agregará el último elemento. -}
--- it kinda bugs
 toEL :: [a] -> EList a
 toEL []  = []
 toEL [x] = []
-toEl (a : b : xs) = (a, b) : toEl xs
+toEL (a : b : xs) = (a, b) : toEL xs
 
 --Dado un entero n y una EList l, borra los n primeros elementos de l, donde n es par.
 dropP :: Int -> EList a -> EList a
