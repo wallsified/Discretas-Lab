@@ -15,10 +15,13 @@
 
 ### Funciones Auxiliares
 
+Volvimos a ocupar myMod para implementar el funcionamiento de la función nativa de Haskell _mod_.
 
 <br>
 
 ### Extras
+
+No hubo funciones extras para esta práctica. 
 
 <br>
 
