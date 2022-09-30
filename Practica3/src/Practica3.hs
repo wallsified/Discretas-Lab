@@ -58,14 +58,15 @@ atP [] n            = error "El número de elemento excede el numero de elemento
 atP ((a, b) : xs) (0) = error "Ingrese número de elemento válido"
 atP ((a, b) : xs) 1 = a
 atP ((a, b) : xs) 2 = b
-atP ((a, b) : xs) n = if (n < 0) then error "Ingrese número de elemento válido" else atP xs (n-2)
+atP ((a, b) : xs) n = if (n > 0 && n <= longP ((a, b) : xs)) then atP xs (n-2) else error "Ingrese número de elemento válido" 
 
 -- Dada una EList l, un número n y un elemento e, cambia el n-ésimo elemento de l por e.
 updateP :: EList a -> Int -> a -> EList a
 updateP [] n x            = []
+updateP ((a, b) : xs) 0 x = ((a, b) : xs)
 updateP ((a, b) : xs) 1 x = (x,b):xs
 updateP ((a, b) : xs) 2 x = (a,x):xs
-updateP ((a, b) : xs) n x = (a,b): updateP xs (n-2) x
+updateP ((a, b) : xs) n x = if (n > 0 && n <= longP ((a, b) : xs)) then (a,b): updateP xs (n-2) x else error "Ingrese número de elemento válido"
 
 {-
 Función que recibe una EList l y regresa la misma pero aplanada, es decir, todos los elementos de l
@@ -86,7 +87,7 @@ toEL (a : b : xs) = (a, b) : toEL xs
 dropP :: Int -> EList a -> EList a
 dropP n [] = []
 dropP 0 ((a, b) : xs) = ((a, b) : xs)
-dropP n ((a, b) : xs) = if (myMod n 2 == 0) then drop (n-2) xs else error "El valor ingresado no es par. Usa dropN"
+dropP n ((a, b) : xs) = if (n > 0 && n <= longP ((a, b) : xs)) then (if (myMod n 2 == 0) then drop (n-2) xs else error "El valor ingresado no es par. Usa dropN" ) else error "Ingrese número de elemento válido"
 
 {-
 Al igual que el inciso anterior, borra los n primeros elementos de l, pero n puede ser par o impar, pues
@@ -96,13 +97,13 @@ dropN :: Int -> EList a -> [a]
 dropN n []            = []
 dropN 0 (x:xs)        = []
 dropN 1 ((a, b) : xs) = b:aplanaP xs
-dropN n ((a, b) : xs) =  dropN (n-2) xs
+dropN n ((a, b) : xs) =  if (n > 0 && n <= longP ((a, b) : xs)) then dropN (n-2) xs else error "Ingrese número de elemento válido"
 
 --Dado un entero n y una EList l, toma los n primeros elementos l, n debe ser par.
 takeP :: Int -> EList a -> EList a
 takeP n [] = []
 takeP 0 ((a, b) : xs) = ((a, b) : xs)
-takeP n ((a, b) : xs) = if (myMod n 2 == 0) then (a,b) : takeP (n - 2) xs else error "El valor ingresado no es par. Usa takeN"
+takeP n ((a, b) : xs) = if (n > 0 && n <= longP ((a, b) : xs)) then ( if (myMod n 2 == 0) then (a,b) : takeP (n - 2) xs else error "El valor ingresado no es par. Usa takeN" ) else error "Ingrese número de elemento válido"
 
 {- Al igual que el inciso anterior, toma los primeros n elementos de una EList, pero n puede ser par o impar,
 pues los elementos se regresarán en una lista común. -}
@@ -110,7 +111,7 @@ takeN :: Int -> EList a -> [a]
 takeN n []            = []
 takeN 0 (x:xs)        = []
 takeN 1 ((a,b):xs)    = [a]
-takeN n ((a, b) : xs) = a : b : takeN (n-2) xs
+takeN n ((a, b) : xs) = if (n > 0 && n <= longP ((a, b) : xs)) then ( a : b : takeN (n-2) xs ) else error "Ingrese número de elemento válido"
 
 -- Elabora una función que haga la reversa de una EList.
 reversaP :: EList a -> EList a
