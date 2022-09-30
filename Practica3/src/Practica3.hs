@@ -8,7 +8,7 @@ Número de Cuenta: 318159926
 
 type EList a = [(a,a)]
 
-pruebaElist =  [(1,2),(3,4),(5,6)]
+pruebaElist = [(1,2),(3,4),(5,6)]
 pruebaElist2 =  [(11,22),(33,44),(55,66),(77,88)]
 pruebaElist3 = [('h','o'),('l','a'),('M','u'),('n','d'),('o','!')]
 pruebaElist4 = [('h','0'),('l','4'),('M','u'),('n','d'),('0','!')]
@@ -20,13 +20,10 @@ myMod n m = if (n < m) then n else myMod (n-m) m
 Nota: Como estamos hablando de listas de parejas (o duplas), entonces tenemos que considerar que pueden haber casos donde sea
 necesario devolver 0,1,2 o n elementos, donde n<= 2, ya que son "duplas". Esta idea nos sirve para entender los casos de varias
 de nuestras funciones.
-
 A su vez, sabemos que x:xs es una lista, y si x = (a,b), entonces (a,b):xs es una lista también.
-
 Nota #2: Como estamos usando listas de parejas de 'a', y en cierta forma un string es una lista de chars, pues podemos cambiar
 letras de una palabra por ejemplo. Por eso pruebaElist3. Pero al mismo tiempo podemos tener duplas de caracteres-numeros y hacemos
 la misma lista de 'a'
-
  -}
 
 
@@ -40,15 +37,15 @@ elemP :: Eq a => a -> EList a -> Bool -- Hacemos Eq de a para poder compararlo c
 elemP n []            = False
 elemP n ((a, b) : xs) = n == a || n == b || elemP n xs
 
--- Función que realiza la concatenación de dos EList
-appendP :: EList a -> EList a -> EList a
-appendP [] x            = x
-appendP ((a, b) : xs) x = (a, b) : appendP xs x
-
 --Dados dos elementos y una EList, los agrega al principio de la Elist.
 consP :: (a,a) -> EList a -> EList a
 consP (a,b) []            = [(a,b)]
 consP (a,b) ((x, y) : xs) = (a,b) : consP (x,y) xs
+
+-- Función que realiza la concatenación de dos EList
+appendP :: EList a -> EList a -> EList a
+appendP [] x            = x
+appendP ((a, b) : xs) x = (a, b) : appendP xs x
 
 -- Función que agrega dos elementos al final de una EList.
 snocP :: (a, a) -> EList a -> EList a
@@ -57,10 +54,11 @@ snocP (a, b) ((x, y) : xs) = (x, y) : snocP (a, b) xs
 
 -- Dada una EList l y un entero n, regresa el n-ésimo elemento de l.
 atP :: EList a -> Int -> a
-atP [] 0            = error "Lista Vacía"
+atP [] n            = error "El número de elemento excede el numero de elementos en lista"
+atP ((a, b) : xs) (0) = error "Ingrese número de elemento válido"
 atP ((a, b) : xs) 1 = a
 atP ((a, b) : xs) 2 = b
-atP ((a, b) : xs) n = atP xs (n-2)
+atP ((a, b) : xs) n = if (n < 0) then error "Ingrese número de elemento válido" else atP xs (n-2)
 
 -- Dada una EList l, un número n y un elemento e, cambia el n-ésimo elemento de l por e.
 updateP :: EList a -> Int -> a -> EList a
@@ -88,7 +86,7 @@ toEL (a : b : xs) = (a, b) : toEL xs
 dropP :: Int -> EList a -> EList a
 dropP n [] = []
 dropP 0 ((a, b) : xs) = ((a, b) : xs)
-dropP n ((a, b) : xs) = if (myMod n 2 == 0) then drop (n-2) xs else error "El valor ingresado no es par. Usa dropP"
+dropP n ((a, b) : xs) = if (myMod n 2 == 0) then drop (n-2) xs else error "El valor ingresado no es par. Usa dropN"
 
 {-
 Al igual que el inciso anterior, borra los n primeros elementos de l, pero n puede ser par o impar, pues
@@ -118,6 +116,12 @@ takeN n ((a, b) : xs) = a : b : takeN (n-2) xs
 reversaP :: EList a -> EList a
 reversaP []            = []
 reversaP ((a, b) : xs) = snocP (b, a) (reversaP xs)
+
+
+mapP :: (a -> b) -> [(a, a)] -> [(b, b)]
+mapP f [] = []
+mapP f ((a, b) : xs) = if null ((a, b) : xs) then [] else ((f a, f b) : (mapP f xs))
+
 
 {-
 Fun fact, esta asi si nos da pero duplas. La dejo por que puede ser útil luego
