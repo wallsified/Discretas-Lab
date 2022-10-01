@@ -21,7 +21,7 @@ Volvimos a ocupar myMod para implementar el funcionamiento de la función nativa
 
 ### Extras
 
-No hubo funciones extras para esta práctica. 
+No hubo funciones extras para esta práctica 
 
 <br>
 

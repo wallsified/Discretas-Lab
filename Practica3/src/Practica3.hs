@@ -39,7 +39,7 @@ elemP n ((a, b) : xs) = n == a || n == b || elemP n xs
 
 --Dados dos elementos y una EList, los agrega al principio de la Elist.
 consP :: (a,a) -> EList a -> EList a
-consP (a,b) []            = [(a,b)]
+consP (a,b) []            = [(a,b)] 
 consP (a,b) ((x, y) : xs) = (a,b) : consP (x,y) xs
 
 -- Función que realiza la concatenación de dos EList
@@ -118,6 +118,13 @@ reversaP :: EList a -> EList a
 reversaP []            = []
 reversaP ((a, b) : xs) = snocP (b, a) (reversaP xs)
 
+{-
+Función extra, mapP para EList's. 
+La idea detrás de la función es, recibimos una función (alguien dijo recursión?) y una Elist a la cual aplicarla, 
+despues devolvemos está nueva EList. 
+Si es una lista vacía o es una lista de elementos nulos, entonces la devolvemos vacía. Si no, la aplicamos al elemento a y b
+de la primera pareja de la lista y posteriormente a su cola. 
+-}
 
 mapP :: (a -> b) -> [(a, a)] -> [(b, b)]
 mapP f [] = []
