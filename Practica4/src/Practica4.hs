@@ -136,3 +136,5 @@ num_conectivos (Conj a b) = 1 + (num_conectivos a) + (num_conectivos b)
 num_conectivos (Disy a b) = 1 + (num_conectivos a) + (num_conectivos b)
 num_conectivos (Impl a b) = 1 + (num_conectivos a) + (num_conectivos b)
 num_conectivos (Syss a b) = 1 + (num_conectivos a) + (num_conectivos b)
+
+-- branch change
