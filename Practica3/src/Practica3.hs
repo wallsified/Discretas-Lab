@@ -26,7 +26,6 @@ letras de una palabra por ejemplo. Por eso pruebaElist3. Pero al mismo tiempo po
 la misma lista de 'a'
  -}
 
-
 -- Dada una EList obtiene su número de elementos.
 longP :: EList a -> Int
 longP []            = 0
@@ -129,7 +128,6 @@ de la primera pareja de la lista y posteriormente a su cola.
 mapP :: (a -> b) -> [(a, a)] -> [(b, b)]
 mapP f [] = []
 mapP f ((a, b) : xs) = if null ((a, b) : xs) then [] else ((f a, f b) : (mapP f xs))
-
 
 {-
 Fun fact, esta asi si nos da pero duplas. La dejo por que puede ser útil luego
