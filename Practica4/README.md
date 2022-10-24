@@ -1,5 +1,5 @@
 <h2 align='center'>
-  Práctica 3: Listas de longitud par. 
+  Práctica 4: Lógica proposicional.
 </h2>
 
 <br>
@@ -15,14 +15,14 @@
 
 ### Funciones Auxiliares
 
-Volvimos a ocupar myMod para implementar el funcionamiento de la función nativa de Haskell _mod_.
+
 
 <br>
 
 ### Extras
 
-No hubo funciones extras para esta práctica 
+
 
 <br>
 
-> _You just keep on trying 'till you run out of cake..._
+> _So you make a neat gun, think of all the things we've learned from the people who are still alive..._
