@@ -59,7 +59,7 @@ varsAux1 (x:xs) = if x == (takeS 1 xs) then varsAux1 xs else
 varsAux2 :: [String] -> [String]
 varsAux2 []     = []
 varsAux2 [a]    = [a]
-varsAux2 (x:xs) = if x == takeS 1 xs then varsAux2 xs else [x] ++ varsAux2 xs
+varsAux2 (x:xs) = if (x == takeS 1 xs) then varsAux2 xs else [x] ++ varsAux2 xs
 
 --Función que obtiene un elemento de una lista
 takeS :: Int -> [String] -> String
@@ -114,6 +114,44 @@ conm (Disy a b) = (Disy (conm b) (conm a))
 conm (Impl a b) = (Impl (conm a) (conm b))
 conm (Syss a b) = (Syss (conm a) (conm b))
 
+{- -- 5. dist Función que recibe una LProp y aplica la ley de distributividad de forma exhaustiva sobre toda la expresión.
+dist :: LProp -> LProp
+dist PTrue = PTrue
+dist PFalse = PFalse
+dist (Var a) = (Var a)
+dist (Neg a) = (Neg a)
+dist (Disy a b) = (Conj (D))
+dist (Conj a b) = (Disy (Conj a (dist b)) (Conj (dist a) b))
+{- dist (Disy a (Conj b c)) = (Conj (Disy (dist a) (dist b)) (Disy (dist a) (dist c)))
+dist (Conj a (Disy b c)) = (Disy (Conj (dist a) (dist b)) (Conj (dist a) (dist b)))  -}
+dist (Impl a b) = (Impl (dist a) (dist b))
+dist (Syss a b) = (Syss (dist a) (dist b)) -}
+
+{-
+-- 6. deMorgan Función que le aplica a una LProp las leyes de De morgan.
+deMorgan :: LProp -> LProp
+deMorgan PTrue = PTrue
+deMorgan PFalse = PFalse
+deMorgan (Var a) = (Var a)
+deMorgan (Neg a) = (Neg a)
+deMorgan (Conj a b) =
+deMorgan (Disy a b) =
+deMorgan (Impl a b) = (Impl a b)
+deMorgan (Syss a b) = (Syss a b)
+ -}
+
+-- 7. equiv_op Función que recibe una LProp y aplica la equivalencia de operadores que se describe al inicio de este documento
+equiv_op :: LProp -> LProp
+equiv_op PTrue      = PTrue
+equiv_op PFalse     = PFalse
+equiv_op (Var a)    = (Var a)
+equiv_op (Neg a)    = (Neg a)
+equiv_op (Conj a b) = (Conj a (equiv_op (b)))
+equiv_op (Disy a b) = (Disy a (equiv_op b))
+equiv_op (Impl a b) = (Disy (Neg a) (equiv_op b))
+equiv_op (Syss a b) = (Conj (Disy (Neg a) b) (Disy (Neg b) a )) -- funky
+
+
 -- 8. dobleNeg Función que quita las dobles negaciones de una LProp.
 dobleNeg :: LProp -> LProp
 dobleNeg (Var a)       = (Var a)
@@ -137,4 +175,11 @@ num_conectivos (Disy a b) = 1 + (num_conectivos a) + (num_conectivos b)
 num_conectivos (Impl a b) = 1 + (num_conectivos a) + (num_conectivos b)
 num_conectivos (Syss a b) = 1 + (num_conectivos a) + (num_conectivos b)
 
--- branch change
+-- 10. interpretacion Esta función va a tomar una LProp ψ y una asignación para regresar la interpretacion de ψ a partir de los valores de la asignación.
+interpretacion :: LProp -> Asignacion -> Int
+interpretacion PTrue asig = 1
+interpretacion PFalse asig = 0
+interpretacion (Var a) [(a,x)] = x 
+interpretacion (Neg a) assig = 1 - (interpretacion a assig)
+-- sigue estando mal though
+
