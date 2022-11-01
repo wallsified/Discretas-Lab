@@ -15,9 +15,9 @@
 
 ### Funciones Auxiliares
 
+Para la función de "interpreta", usamos una función auxiliar a la que llamamos "asignaValor". La lógica detras de ella es que como podemos recibir varias variables en una asignación, ésta función detecta a que letra corresponde cada valor de la asignación. Asi, la usamos para poder
+usarla como caso base en el resto de la función "interpreta".  
 
-
-<br>
 
 ### Extras
 
