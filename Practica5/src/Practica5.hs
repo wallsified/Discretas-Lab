@@ -10,12 +10,12 @@ Número de Cuenta: 318159926
 type Nombre = String
 
 --Tipo para las proposiciones
-data LProp = T | F | VarP Nombre | Conj Lprop LProp | Disy LProp LProp | Impl LProp LProp | Syss LProp LProp | Neg LProp deriving (Show, Eq)
+data LProp = T | F | VarP Nombre | Conj LProp LProp | Disy LProp LProp | Impl LProp LProp | Syss LProp LProp | Neg LProp deriving (Eq)
 
 instance Show LProp where
-    show (Var a)    = show a
-    show PFalse     = show False
-    show PTrue      = show True
+    show (VarP a)    = show a
+    show F     = show False
+    show T      = show True
     show (Neg a)    = "¬" ++ show a
     show (Conj a b) = "(" ++ show a ++ " ^ " ++ show b ++ ")"
     show (Disy a b) = "(" ++ show a ++ " v " ++ show b ++ ")"
@@ -23,9 +23,9 @@ instance Show LProp where
     show (Syss a b) = "(" ++ show a ++ " <-> " ++ show b ++ ")"
 
 
---Tipo para el Tableaux
+{- --Tipo para el Tableaux
 data Tableaux = Hoja [LProp] | Alpha [LProp] Tableaux | Beta [LProp] Tableaux Tableaux deriving (Show, Eq)
-
+ -}
 {- instance Show Tableaux where
     show (Hoja [x] ) =
     show (Alpha [x] a) =
