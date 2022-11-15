@@ -35,40 +35,53 @@ esLiteral (VarP a) = True
 esLiteral (Neg a) = esLiteral a
 esLiteral T = True
 esLiteral F = True
-esLiteral _ = Falsecd
+esLiteral _ = False
 
 -- 2. nextF Función que regresa la primera fórmula que no es literal de una lista de fórmulas.
 nextF:: [LProp] -> LProp
-nextF _ = error "implementar"
+nextF (a:xs) = if (esLiteral a == False) then a else nextF xs
 
 -- 3. alpha Nos dice si una fórmula f es una fórmula α
 alpha :: LProp -> Bool
-alpha _ = error "implementar"
--- si nextF me da la siguiente formula no literal, la quitamos (funcion auxiliar?) 
+alpha (Conj a b) = True
+alpha (Neg (Disy a b)) = True
+alpha a = False
 
 -- 4. beta  Nos dice si una fórmula f es una fórmula β
 beta :: LProp -> Bool
-beta _ = error "implementar"
+beta (Disy a b) = True
+beta (Neg (Conj a b)) = True
+beta (Impl a b) = True
+beta a = False
 
 -- 5. sigma Nos dice si una fórmula f es una fórmula σ
 sigma:: LProp -> Bool 
-sigma _ = error "implementar"
-
-{- sigma (Neg T)       = F
-sigma (Neg F)       = T
-sigma (Neg (Neg a)) = T
-sigma a             = F
- -}
+sigma (Neg T)       = False
+sigma (Neg F)       = True
+sigma (Neg (Neg a)) = True
+sigma a             = False
 
 -- 6. expAlpha Dada una lista de fórmulas l y una fórmula f realiza la expansión alpha de f dentro la lista l.
---expAlpha :: [LProp] -> LProp -> [LProp]
--- expAlpha l f@(Conj a b) = let ln = quita f l in a:b:ln
--- expAlpha l (Conj a b) = a:b:ln where ln = quita f l   
+expAlpha :: [LProp] -> LProp -> [LProp]
+expAlpha l f@(Conj a b) = a:b:ln where ln = removeItem f l  
+expAlpha l x@(Neg (Disy a b)) =  a:b:ln where ln = removeItem x l
+
+--Auxiliar
+removeItem _ []                 = []
+removeItem x (y:ys) | x == y    = removeItem x ys
+                    | otherwise = y : removeItem x ys
 
 
 -- 7. expBeta  Dada una lista de fórmulas l y una fórmula f realiza la expansión beta de f sobre la lista l.
--- expBeta :: [LProp] -> LProp -> ([LProp], [LProp])
+expBeta :: [LProp] -> LProp -> ([LProp], [LProp])
+expBeta l q@(Disy x y) = 
+
+{- expBeta (a:xs) w@(Neg (Conj x y)) = a:b:ln where ln = removeItem w l
+expBeta (a:xs) u@(Impl x y) = a:b:ln where ln = removeItem u l    
+ -}
 
 -- 8. expSigma Dada una lista de fórmulas l y una fórmula f , realiza la expansión sigma de f sobre la lista l.
+{- expSigma:: [LProp] -> LProp -> ([LProp], [LProp])
+expSigma l f =  -}
 
 -- 9. consTableaux Construye el tableau a partir de una fórmula.
