@@ -6,7 +6,13 @@
   <lib desc="#Gates" name="1"/>
   <lib desc="#Plexers" name="2"/>
   <lib desc="#Arithmetic" name="3"/>
-  <lib desc="#Memory" name="4"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
   <lib desc="#I/O" name="5"/>
   <lib desc="#Base" name="6">
     <tool name="Text Tool">
@@ -65,15 +71,15 @@
     <wire from="(380,280)" to="(550,280)"/>
     <wire from="(260,140)" to="(260,170)"/>
     <wire from="(380,350)" to="(420,350)"/>
-    <wire from="(650,190)" to="(650,210)"/>
     <wire from="(650,130)" to="(650,150)"/>
+    <wire from="(650,190)" to="(650,210)"/>
     <wire from="(200,100)" to="(230,100)"/>
     <wire from="(140,140)" to="(140,300)"/>
     <wire from="(200,100)" to="(200,260)"/>
     <wire from="(490,230)" to="(520,230)"/>
-    <wire from="(720,170)" to="(740,170)"/>
     <wire from="(310,130)" to="(340,130)"/>
     <wire from="(310,210)" to="(340,210)"/>
+    <wire from="(720,170)" to="(740,170)"/>
     <wire from="(260,130)" to="(280,130)"/>
     <wire from="(420,370)" to="(440,370)"/>
     <wire from="(550,150)" to="(580,150)"/>
@@ -93,11 +99,11 @@
     <wire from="(140,60)" to="(140,140)"/>
     <wire from="(80,410)" to="(440,410)"/>
     <wire from="(490,110)" to="(580,110)"/>
+    <wire from="(480,150)" to="(510,150)"/>
     <wire from="(630,130)" to="(650,130)"/>
     <wire from="(630,210)" to="(650,210)"/>
     <wire from="(650,150)" to="(670,150)"/>
     <wire from="(650,190)" to="(670,190)"/>
-    <wire from="(480,150)" to="(510,150)"/>
     <wire from="(80,230)" to="(490,230)"/>
     <wire from="(390,110)" to="(410,110)"/>
     <wire from="(390,190)" to="(410,190)"/>
@@ -110,8 +116,8 @@
     <wire from="(80,230)" to="(80,410)"/>
     <wire from="(70,60)" to="(80,60)"/>
     <wire from="(690,300)" to="(690,350)"/>
-    <wire from="(510,190)" to="(580,190)"/>
     <wire from="(200,330)" to="(330,330)"/>
+    <wire from="(510,190)" to="(580,190)"/>
     <wire from="(740,170)" to="(740,350)"/>
     <wire from="(490,110)" to="(490,230)"/>
     <comp lib="0" loc="(130,60)" name="Pin">
@@ -136,6 +142,14 @@
     <comp lib="1" loc="(380,280)" name="AND Gate">
       <a name="inputs" val="2"/>
     </comp>
+    <comp lib="6" loc="(810,429)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(429,37)" name="Text">
+      <a name="text" val="SUMADOR"/>
+      <a name="font" val="SansSerif bold 20"/>
+    </comp>
     <comp lib="1" loc="(630,210)" name="AND Gate">
       <a name="inputs" val="2"/>
     </comp>
@@ -153,6 +167,10 @@
     <comp lib="1" loc="(480,150)" name="OR Gate">
       <a name="inputs" val="2"/>
     </comp>
+    <comp lib="6" loc="(653,430)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
     <comp lib="1" loc="(600,300)" name="OR Gate">
       <a name="inputs" val="2"/>
     </comp>
@@ -161,16 +179,36 @@
       <a name="inputs" val="2"/>
     </comp>
     <comp lib="1" loc="(550,230)" name="NOT Gate"/>
-    <comp lib="1" loc="(630,130)" name="AND Gate">
-      <a name="inputs" val="2"/>
+    <comp lib="6" loc="(709,450)" name="Text">
+      <a name="text" val="(((aj bj) + (aj bj))cj1) + (((aj bj) + (aj bj)))cj1) = sj1"/>
+      <a name="font" val="SansSerif plain 16"/>
     </comp>
     <comp lib="0" loc="(190,60)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="bj"/>
     </comp>
+    <comp lib="1" loc="(630,130)" name="AND Gate">
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(602,430)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(729,415)" name="Text">
+      <a name="text" val="((aj + bj) cj1) + (aj bj) = cj (Si hay por lo menos dos 1's)"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
     <comp lib="1" loc="(550,150)" name="NOT Gate"/>
     <comp lib="1" loc="(490,390)" name="AND Gate">
       <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(553,430)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="SansSerif plain 16"/>
+    </comp>
+    <comp lib="6" loc="(719,429)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="SansSerif plain 16"/>
     </comp>
   </circuit>
 </project>

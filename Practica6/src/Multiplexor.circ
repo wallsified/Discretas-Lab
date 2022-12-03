@@ -6,7 +6,13 @@
   <lib desc="#Gates" name="1"/>
   <lib desc="#Plexers" name="2"/>
   <lib desc="#Arithmetic" name="3"/>
-  <lib desc="#Memory" name="4"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
   <lib desc="#I/O" name="5"/>
   <lib desc="#Base" name="6">
     <tool name="Text Tool">
@@ -54,121 +60,197 @@
     <a name="clabel" val=""/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="Ubuntu plain 32"/>
-    <wire from="(390,100)" to="(450,100)"/>
-    <wire from="(460,230)" to="(460,300)"/>
-    <wire from="(420,210)" to="(480,210)"/>
-    <wire from="(140,90)" to="(140,160)"/>
-    <wire from="(320,180)" to="(320,310)"/>
-    <wire from="(90,220)" to="(340,220)"/>
-    <wire from="(90,290)" to="(90,300)"/>
-    <wire from="(230,210)" to="(230,350)"/>
-    <wire from="(390,90)" to="(390,100)"/>
-    <wire from="(90,150)" to="(90,170)"/>
-    <wire from="(140,380)" to="(140,400)"/>
-    <wire from="(140,400)" to="(140,420)"/>
-    <wire from="(450,100)" to="(450,190)"/>
-    <wire from="(320,310)" to="(320,400)"/>
-    <wire from="(390,160)" to="(430,160)"/>
-    <wire from="(450,190)" to="(480,190)"/>
-    <wire from="(390,230)" to="(420,230)"/>
-    <wire from="(230,400)" to="(320,400)"/>
-    <wire from="(110,70)" to="(110,110)"/>
-    <wire from="(320,310)" to="(340,310)"/>
-    <wire from="(180,240)" to="(180,280)"/>
-    <wire from="(460,230)" to="(480,230)"/>
-    <wire from="(70,300)" to="(90,300)"/>
-    <wire from="(140,160)" to="(340,160)"/>
-    <wire from="(140,160)" to="(140,350)"/>
-    <wire from="(390,300)" to="(460,300)"/>
-    <wire from="(90,290)" to="(340,290)"/>
-    <wire from="(90,150)" to="(340,150)"/>
-    <wire from="(430,200)" to="(480,200)"/>
-    <wire from="(90,220)" to="(90,230)"/>
-    <wire from="(530,210)" to="(570,210)"/>
-    <wire from="(230,110)" to="(340,110)"/>
-    <wire from="(230,210)" to="(340,210)"/>
-    <wire from="(420,210)" to="(420,230)"/>
-    <wire from="(230,380)" to="(230,400)"/>
-    <wire from="(230,400)" to="(230,420)"/>
-    <wire from="(140,400)" to="(180,400)"/>
-    <wire from="(110,70)" to="(340,70)"/>
-    <wire from="(180,240)" to="(340,240)"/>
-    <wire from="(180,280)" to="(340,280)"/>
-    <wire from="(80,110)" to="(110,110)"/>
-    <wire from="(230,110)" to="(230,210)"/>
-    <wire from="(320,180)" to="(340,180)"/>
-    <wire from="(70,170)" to="(90,170)"/>
-    <wire from="(430,160)" to="(430,200)"/>
-    <wire from="(80,230)" to="(90,230)"/>
-    <wire from="(180,280)" to="(180,400)"/>
-    <wire from="(140,90)" to="(340,90)"/>
-    <comp lib="6" loc="(223,429)" name="Text">
-      <a name="text" val="c2"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <wire from="(170,90)" to="(170,100)"/>
+    <wire from="(170,170)" to="(170,180)"/>
+    <wire from="(170,230)" to="(170,240)"/>
+    <wire from="(170,310)" to="(170,320)"/>
+    <wire from="(170,90)" to="(220,90)"/>
+    <wire from="(170,230)" to="(220,230)"/>
+    <wire from="(570,260)" to="(610,260)"/>
+    <wire from="(410,410)" to="(410,430)"/>
+    <wire from="(410,430)" to="(410,450)"/>
+    <wire from="(410,140)" to="(520,140)"/>
+    <wire from="(410,260)" to="(520,260)"/>
+    <wire from="(500,350)" to="(500,430)"/>
+    <wire from="(610,190)" to="(610,220)"/>
+    <wire from="(130,100)" to="(170,100)"/>
+    <wire from="(130,240)" to="(170,240)"/>
+    <wire from="(320,430)" to="(360,430)"/>
+    <wire from="(360,330)" to="(360,430)"/>
+    <wire from="(360,330)" to="(520,330)"/>
+    <wire from="(630,250)" to="(660,250)"/>
+    <wire from="(630,210)" to="(660,210)"/>
+    <wire from="(500,210)" to="(520,210)"/>
+    <wire from="(500,350)" to="(520,350)"/>
+    <wire from="(170,180)" to="(190,180)"/>
+    <wire from="(170,320)" to="(190,320)"/>
+    <wire from="(250,170)" to="(520,170)"/>
+    <wire from="(210,110)" to="(220,110)"/>
+    <wire from="(210,250)" to="(220,250)"/>
+    <wire from="(250,310)" to="(520,310)"/>
+    <wire from="(360,280)" to="(360,330)"/>
+    <wire from="(320,120)" to="(520,120)"/>
+    <wire from="(410,140)" to="(410,260)"/>
+    <wire from="(410,260)" to="(410,380)"/>
+    <wire from="(320,120)" to="(320,190)"/>
+    <wire from="(570,120)" to="(570,130)"/>
+    <wire from="(610,220)" to="(660,220)"/>
+    <wire from="(610,240)" to="(660,240)"/>
+    <wire from="(170,100)" to="(170,110)"/>
+    <wire from="(170,160)" to="(170,170)"/>
+    <wire from="(170,240)" to="(170,250)"/>
+    <wire from="(170,300)" to="(170,310)"/>
+    <wire from="(500,210)" to="(500,350)"/>
+    <wire from="(570,130)" to="(630,130)"/>
+    <wire from="(570,330)" to="(630,330)"/>
+    <wire from="(170,160)" to="(220,160)"/>
+    <wire from="(170,300)" to="(220,300)"/>
+    <wire from="(570,190)" to="(610,190)"/>
+    <wire from="(320,410)" to="(320,430)"/>
+    <wire from="(320,430)" to="(320,450)"/>
+    <wire from="(710,230)" to="(750,230)"/>
+    <wire from="(630,250)" to="(630,330)"/>
+    <wire from="(630,130)" to="(630,210)"/>
+    <wire from="(130,170)" to="(170,170)"/>
+    <wire from="(130,310)" to="(170,310)"/>
+    <wire from="(610,240)" to="(610,260)"/>
+    <wire from="(410,430)" to="(500,430)"/>
+    <wire from="(360,280)" to="(520,280)"/>
+    <wire from="(170,110)" to="(190,110)"/>
+    <wire from="(170,250)" to="(190,250)"/>
+    <wire from="(250,100)" to="(520,100)"/>
+    <wire from="(210,180)" to="(220,180)"/>
+    <wire from="(210,320)" to="(220,320)"/>
+    <wire from="(250,240)" to="(520,240)"/>
+    <wire from="(320,190)" to="(320,380)"/>
+    <wire from="(320,190)" to="(520,190)"/>
+    <comp lib="1" loc="(570,120)" name="AND Gate">
+      <a name="inputs" val="3"/>
     </comp>
-    <comp lib="6" loc="(60,283)" name="Text">
-      <a name="text" val="a3"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="1" loc="(210,320)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
-    <comp lib="6" loc="(100,481)" name="Text">
-      <a name="text" val="__"/>
-      <a name="font" val="Ubuntu plain 20"/>
+    <comp lib="1" loc="(210,180)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(390,90)" name="AND Gate"/>
-    <comp lib="6" loc="(175,481)" name="Text">
-      <a name="text" val="__"/>
-      <a name="font" val="Ubuntu plain 20"/>
+    <comp lib="0" loc="(130,310)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="pull" val="up"/>
     </comp>
-    <comp lib="1" loc="(390,160)" name="AND Gate"/>
-    <comp lib="1" loc="(140,350)" name="NOT Gate">
+    <comp lib="1" loc="(410,380)" name="NOT Gate">
       <a name="facing" val="north"/>
       <a name="labelfont" val="SansSerif bolditalic 36"/>
     </comp>
-    <comp lib="6" loc="(55,161)" name="Text">
-      <a name="text" val="a1"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="1" loc="(570,330)" name="AND Gate">
+      <a name="inputs" val="3"/>
     </comp>
-    <comp lib="6" loc="(74,481)" name="Text">
+    <comp lib="6" loc="(804,272)" name="Text">
       <a name="text" val="__"/>
       <a name="font" val="Ubuntu plain 20"/>
     </comp>
-    <comp lib="6" loc="(57,219)" name="Text">
-      <a name="text" val="a2"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="0" loc="(750,230)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="b"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="1" loc="(390,230)" name="AND Gate"/>
-    <comp lib="6" loc="(551,180)" name="Text">
-      <a name="text" val="b"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="1" loc="(250,310)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+      <a name="label" val="a3"/>
     </comp>
-    <comp lib="1" loc="(230,350)" name="NOT Gate">
+    <comp lib="6" loc="(703,272)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="Ubuntu plain 20"/>
+    </comp>
+    <comp lib="1" loc="(710,230)" name="OR Gate">
+      <a name="inputs" val="4"/>
+    </comp>
+    <comp lib="1" loc="(320,380)" name="NOT Gate">
       <a name="facing" val="north"/>
       <a name="labelfont" val="SansSerif bolditalic 36"/>
     </comp>
-    <comp lib="1" loc="(530,210)" name="OR Gate"/>
-    <comp lib="1" loc="(390,300)" name="AND Gate"/>
-    <comp lib="6" loc="(59,106)" name="Text">
-      <a name="text" val="a0"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="1" loc="(570,260)" name="AND Gate">
+      <a name="inputs" val="3"/>
     </comp>
-    <comp lib="6" loc="(138,429)" name="Text">
-      <a name="text" val="c1"/>
-      <a name="font" val="Ubuntu plain 28"/>
-      <a name="valign" val="center"/>
+    <comp lib="0" loc="(130,100)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="pull" val="up"/>
     </comp>
-    <comp lib="6" loc="(305,479)" name="Text">
+    <comp lib="1" loc="(210,250)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(250,100)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+      <a name="label" val="a0"/>
+    </comp>
+    <comp lib="0" loc="(320,450)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="c1"/>
+    </comp>
+    <comp lib="6" loc="(934,270)" name="Text">
       <a name="text" val="__"/>
       <a name="font" val="Ubuntu plain 20"/>
     </comp>
-    <comp lib="6" loc="(234,508)" name="Text">
+    <comp lib="1" loc="(250,170)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+      <a name="label" val="a1"/>
+    </comp>
+    <comp lib="6" loc="(167,345)" name="Text">
+      <a name="text" val="Las entradas deben de estar siempre activas."/>
+    </comp>
+    <comp lib="1" loc="(570,190)" name="AND Gate">
+      <a name="inputs" val="3"/>
+    </comp>
+    <comp lib="0" loc="(130,240)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="pull" val="up"/>
+    </comp>
+    <comp lib="0" loc="(130,170)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="pull" val="up"/>
+    </comp>
+    <comp lib="6" loc="(178,370)" name="Text">
+      <a name="text" val="Tercero excluido"/>
+    </comp>
+    <comp lib="6" loc="(729,272)" name="Text">
+      <a name="text" val="__"/>
+      <a name="font" val="Ubuntu plain 20"/>
+    </comp>
+    <comp lib="0" loc="(410,450)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="c2"/>
+    </comp>
+    <comp lib="6" loc="(176,392)" name="Text">
+      <a name="text" val="Pero simula mejor esto :)"/>
+    </comp>
+    <comp lib="6" loc="(295,64)" name="Text">
+      <a name="text" val="Deben de estar activos"/>
+    </comp>
+    <comp lib="1" loc="(250,240)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+      <a name="label" val="a2"/>
+    </comp>
+    <comp lib="6" loc="(865,294)" name="Text">
       <a name="text" val="b = c1 c2 a0 + c1 c2 a1 + c1 c2 a2 + c1 c2 a3"/>
       <a name="font" val="Ubuntu plain 22"/>
+    </comp>
+    <comp lib="1" loc="(210,110)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="6" loc="(171,357)" name="Text">
+      <a name="text" val="Es por eso que se hace uso del"/>
+    </comp>
+    <comp lib="6" loc="(168,379)" name="Text">
+      <a name="text" val="Esto no tendría porque estar para el multiplexor."/>
+    </comp>
+    <comp lib="6" loc="(429,37)" name="Text">
+      <a name="text" val="MULTIPLEXOR"/>
+      <a name="font" val="SansSerif bold 20"/>
     </comp>
   </circuit>
 </project>
